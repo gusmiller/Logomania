@@ -18,7 +18,8 @@ let builder = {
     acronym: "",
     textcolor: "",
     shape: "",
-    shapecolor: ""
+    shapecolor: "",
+    filename: "./examples/logo.svg"
 }
 
 /**
@@ -29,18 +30,22 @@ let builder = {
  */
 const init = () => {
 
-    const vgafilename = "./examples/logo.svg";
-
     // Validate whether file exists or not
-    if (fs.existsSync(vgafilename)) {
+    if (fs.existsSync(builder.filename)) {
 
-        fs.unlink(vgafilename, (err) => {
+        fs.unlink(builder.filename, (err) => {
             if (err) {
                 console.error(`Error deleting file: ${err}`);
+                return false;
             }
         });
     }
 
+    /**
+     * In this asssignment we use nested inquirer questions - last assignemt each one would be on their 
+     * own function. In here we start with the logoquestions and if everything comes back ok, the a new
+     * prompt is triggered - shapequestions
+     */
     inquirer.prompt(questions.logoquestions)
         .then(answers => {
 
@@ -50,15 +55,29 @@ const init = () => {
             inquirer.prompt(questions.shapequestions)
                 .then((answer) => {
 
-                    builder.shape = answer.shape;
-                    builder.shapecolor = answer.shapecolor;
-                    console.log(builder);
+                    builder.shape = answer.shape; // Store shape
+                    builder.shapecolor = answer.shapecolor; // Store shape color
 
                 });
 
-        });
-
+        })
+        .catch((e) => console.log(e.message));
 };
+
+/**
+ * This option will create the SVG file.
+ * @returns 
+ */
+function createShape() {
+
+    let buildfilesrting = `<svg version=\"1.1\" width=\"300\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"150\" cy=\"100\" r=\"80\" fill=\"green\" /><text x=\"150\" y=\"125\" font-size=\"60\" text-anchor=\"middle\" fill=\"white\">SVG</text></svg>`
+
+    fs.writeFile(builder.filename, buildfilesrting, (err) =>
+    err ? console.error(err) : console.log('Success!')
+);
+
+    return true;
+}
 
 /**
  * Entry point for the application. File will trigger this when it finishes

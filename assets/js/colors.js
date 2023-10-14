@@ -9,7 +9,12 @@ const chalk = require('chalk');
 
 const logosshape = ["circle", "square", "tiangle"]
 
-// Logo questions
+let selectedcolors = {
+    text: "",
+    shape: ""
+}
+
+// Logo questions - prompt user for the acronym and the color of the text
 const logoquestions = [
     {
         type: "input",
@@ -24,7 +29,6 @@ const logoquestions = [
             }
 
         }
-
     },
     {
         type: "input",
@@ -34,27 +38,47 @@ const logoquestions = [
         when(answer) {
             return answer.acronym != null;
         },
-        validate: validateHexColor
+        validate: (colorname) => {
+            if (validateHexColor(colorname) === true) {
+                selectedcolors.text = colorname
+                return true;
+            } else {
+                return chalk.red("The Hexadecimal entry is invalid! Please try again...")
+            }
+        },
     }
 ]
 
-// Shape questions
+// Shape questions - prompt user for the shape and color of the logo
 const shapequestions = [
     {
         type: "list",
         name: "shape",
-        message: chalk.green("Please enter the shape of your logo (circle, square or tiangle)"),
+        message: chalk.cyan("Please enter the shape of your logo (circle, square or tiangle)"),
         choices: logosshape,
         default: "circle"
     },
     {
         type: "input",
         name: "shapecolor",
-        message: chalk.blue("Please enter your shape color (use color name or hexadecimal representation)"),
-        when(answer){
+        message: chalk.cyan("Please enter your shape color (use color name or hexadecimal representation)"),
+        when(answer) {
             return answer.shape != null;
         },
-        validate: validateHexColor 
+        validate: (shapecolor) => {
+            if (validateHexColor(shapecolor) === true) {
+
+                if (shapecolor === selectedcolors.text) {
+                    return chalk.red("The Text and Shape cannot be the same color!")
+                }
+
+                selectedcolors.shape = shapecolor
+
+                return true;
+            } else {
+                return chalk.red("The Hexadecimal entry is invalid! Please try again...")
+            }
+        },
     }
 ]
 
@@ -81,7 +105,7 @@ function validateHexColor(value) {
         if (validator.test(value) === true) {
             return true;
         } else {
-            return chalk.red("The Hexadecimal entry is invalid! Please try again...")
+            return false;
         }
 
     } else {
@@ -269,4 +293,4 @@ const colorsdictionary = {
     "yellowgreen": { hexvalue: "#9acd32" }
 }
 
-module.exports = { logoquestions, shapequestions, colorsdictionary, validateHexColor, confirmAnswerValidator }
+module.exports = { logoquestions, shapequestions, colorsdictionary, selectedcolors, validateHexColor, confirmAnswerValidator }
