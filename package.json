@@ -1,0 +1,33 @@
+{
+  "name": "svg-maker",
+  "version": "1.0.0",
+  "description": "CLI Application that will generate an SVG Logo in different shapes and colors.",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gusmiller/Logomania.git"
+  },
+  "keywords": [
+    "logo",
+    "CLI",
+    "SVG"
+  ],
+  "author": "Gustavo Miller",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gusmiller/Logomania/issues"
+  },
+  "homepage": "https://github.com/gusmiller/Logomania#readme",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.4",
+    "email-validator": "^2.0.4"
+  }
+}
