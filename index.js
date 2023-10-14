@@ -12,8 +12,8 @@ const inquirer = require('inquirer');
 // fs is a Node standard library package for reading and writing files
 const fs = require('fs');
 
-const acronymn = require('./assets/js/questions.js');
-const colors = require('./assets/js/colors.js');
+const questions = require('./assets/js/questions.js');
+//const colors = require('./assets/js/colors.js');
 
 let builder = {
     acronym: "",
@@ -42,11 +42,21 @@ const init = () => {
         });
     }
 
-    inquirer.prompt(acronymn.question)
+    inquirer.prompt(questions.logoquestions)
         .then(answers => {
-            
+
             builder.acronym = answers.acronym;
-            
+            builder.textcolor = answers.colorname;
+
+            inquirer.prompt(colors.shapequestions)
+                .then((answer) => {
+
+                    builder.shape = answer.shape;
+                    builder.shapecolor = answer.shapecolor;
+                    console.log(builder);
+
+                });
+
         });
 
 };

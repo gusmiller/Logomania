@@ -7,21 +7,50 @@
  */
 const chalk = require('chalk');
 
-const textcolorquestion = [
+const logosshape = ["circle", "square", "tiangle"]
+
+const logoquestions = [
+    {
+        type: "input",
+        name: "acronym",
+        message: chalk.green("Please enter a 3 letter acronym"),
+        validate: function (answer) {
+
+            if (answer.length != 3) {
+                return chalk.red("Acronum must be 3 characters! Please try again or press CTRL-C to exit CLI")
+            } else {
+                return true;
+            }
+
+        }
+
+    },
     {
         type: "input",
         name: "colorname",
         message: chalk.green("Please enter your text color (use color name or hexadecimal representation)"),
         default: "red",
+        when(answer) {
+            return answer.acronym != null;
+        },
         validate(answer) {
             if (answer.length === 0) {
                 return chalk.red("The color you have entered is invalid! you need to provide a color...")
+            } else {
+                return true;
             }
         }
     }
 ]
 
-const sharecolorquestion = [
+const shapequestions = [
+    {
+        type: "list",
+        name: "shape",
+        message: chalk.green("Please enter the shape of your logo (circle, square or tiangle)"),
+        choices: logosshape,
+        default: "circle"
+    },
     {
         type: "input",
         name: "shapecolor",
@@ -29,6 +58,8 @@ const sharecolorquestion = [
         validate(answer) {
             if (answer.length === 0) {
                 return chalk.red("The color you have entered is invalid! you need to provide a color...")
+            } else {
+                return true;
             }
         }
     }
@@ -49,7 +80,7 @@ function validateHexColor(value) {
     if (value === null || !typeof value === "string") return false;
 
     // Attempt to retrieve color from dictionary
-    let colorSelect = colorsdictionary(value);
+    let colorSelect = colorsdictionary[value];
 
     if (colorSelect === null) {
 
@@ -64,6 +95,13 @@ function validateHexColor(value) {
 
     return false;
 
+}
+
+function confirmAnswerValidator(color) {
+    let colorselection = colorsdictionary[color];
+    if (colorselection === null) {
+
+    }
 }
 
 // There are millions of colors out there but I thought this would give a large range of common colors.
@@ -235,4 +273,4 @@ const colorsdictionary = {
     "yellowgreen": { hexvalue: "#9acd32" }
 }
 
-module.exports = { textcolorquestion, colorsdictionary, sharecolorquestion, validateHexColor }
+module.exports = { logoquestions, shapequestions, colorsdictionary, validateHexColor, confirmAnswerValidator }
