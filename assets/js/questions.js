@@ -14,13 +14,18 @@ const question = [
         type: "input",
         name: "acronym",
         message: chalk.green("Please enter a 3 letter acronym"),
-        default: "OVD",
-        validate(answer) {
-            if (!answer.length === 3) {
+        validate: function(answer){
+
+            if (answer.length != 3) {
                 return chalk.red("Acronum must be 3 characters! Please try again or press CTRL-C to exit CLI")
+            } else {
+                return true;
             }
+
         }
+        
     }
 ]
 
-module.exports = { question };
+
+module.exports = { question }

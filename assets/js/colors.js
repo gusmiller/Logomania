@@ -11,8 +11,21 @@ const textcolorquestion = [
     {
         type: "input",
         name: "colorname",
-        message: chalk.green("Please enter your color selection (use color name or hexadecimal representation)"),
+        message: chalk.green("Please enter your text color (use color name or hexadecimal representation)"),
         default: "red",
+        validate(answer) {
+            if (answer.length === 0) {
+                return chalk.red("The color you have entered is invalid! you need to provide a color...")
+            }
+        }
+    }
+]
+
+const sharecolorquestion = [
+    {
+        type: "input",
+        name: "shapecolor",
+        message: chalk.blue("Please enter your shape color (use color name or hexadecimal representation)"),
         validate(answer) {
             if (answer.length === 0) {
                 return chalk.red("The color you have entered is invalid! you need to provide a color...")
@@ -222,4 +235,4 @@ const colorsdictionary = {
     "yellowgreen": { hexvalue: "#9acd32" }
 }
 
-module.exports = { textcolorquestion, colorsdictionary, validateHexColor }
+module.exports = { textcolorquestion, colorsdictionary, sharecolorquestion, validateHexColor }
