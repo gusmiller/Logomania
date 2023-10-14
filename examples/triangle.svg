@@ -1,3 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" class="svg-triangle">
-    <polygon points="0,0 100,0 50,100"/>
-  </svg>
+  <polygon x="10" y="10"  stroke="black" stroke-width="2" fill="green" points="250,60 100,400 400,400"/>
+  <text x="250" y="300" font-size="60" text-anchor="middle" fill="white">SVG</text>
+</svg>
