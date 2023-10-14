@@ -8,7 +8,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "node index.js"
+    "logotest": "node index.js"
   },
   "repository": {
     "type": "git",

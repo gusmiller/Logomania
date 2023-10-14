@@ -9,11 +9,12 @@ const chalk = require('chalk');
 
 const logosshape = ["circle", "square", "tiangle"]
 
+// Logo questions
 const logoquestions = [
     {
         type: "input",
         name: "acronym",
-        message: chalk.green("Please enter a 3 letter acronym"),
+        message: chalk.green("Please enter a 3 letter acronym :"),
         validate: function (answer) {
 
             if (answer.length != 3) {
@@ -33,16 +34,11 @@ const logoquestions = [
         when(answer) {
             return answer.acronym != null;
         },
-        validate(answer) {
-            if (answer.length === 0) {
-                return chalk.red("The color you have entered is invalid! you need to provide a color...")
-            } else {
-                return true;
-            }
-        }
+        validate: validateHexColor
     }
 ]
 
+// Shape questions
 const shapequestions = [
     {
         type: "list",
@@ -55,13 +51,10 @@ const shapequestions = [
         type: "input",
         name: "shapecolor",
         message: chalk.blue("Please enter your shape color (use color name or hexadecimal representation)"),
-        validate(answer) {
-            if (answer.length === 0) {
-                return chalk.red("The color you have entered is invalid! you need to provide a color...")
-            } else {
-                return true;
-            }
-        }
+        when(answer){
+            return answer.shape != null;
+        },
+        validate: validateHexColor 
     }
 ]
 
@@ -82,21 +75,24 @@ function validateHexColor(value) {
     // Attempt to retrieve color from dictionary
     let colorSelect = colorsdictionary[value];
 
-    if (colorSelect === null) {
+    if ((typeof colorSelect === 'undefined') || colorSelect === null) {
 
         // Use the test method to validate string
         if (validator.test(value) === true) {
             return true;
+        } else {
+            return chalk.red("The Hexadecimal entry is invalid! Please try again...")
         }
 
     } else {
         return true;
     }
-
-    return false;
-
 }
 
+/**
+ * 
+ * @param {string} color 
+ */
 function confirmAnswerValidator(color) {
     let colorselection = colorsdictionary[color];
     if (colorselection === null) {
