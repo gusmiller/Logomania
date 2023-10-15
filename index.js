@@ -22,6 +22,12 @@ let builder = {
     filename: "./examples/logo.svg"
 }
 
+let shapes = {
+    "circle": { code: `<svg version=\"1.1\" width=\"300\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"150\" cy=\"100\" r=\"80\" fill=\"${builder.shapecolor}\" /><text x=\"150\" y=\"125\" font-size=\"60\" text-anchor=\"middle\" fill=\"${builder.textcolor}\">${builder.acronym}</text></svg>` },
+    "square": { code: `<svg version=\"1.1\" width=\"300\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"10\" y=\"10\" width=\"510\" height=\"530\" stroke=\"${builder.shapecolor}\" fill=\"green\" stroke-width=\"2\"/><text x=\"150\" y=\"125\" font-size=\"60\" text-anchor=\"middle\" fill=\"${builder.textcolor}\">${builder.acronym}</text></svg>` },
+    "triangle": { code: `<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"svg-triangle\"><polygon x=\"10\" y=\"10\"  stroke=\"black\" stroke-width=\"2\" fill=\"${builder.shapecolor}\" points=\"250,60 100,400 400,400\"/><text x=\"250\" y=\"300\" font-size=\"60\" text-anchor=\"middle\" fill=\"${builder.textcolor}\">${builder.acronym}</text></svg>` }
+}
+
 /**
  * Start the Readme questionnaire process; the goal is to achieve sections for Description, Table of Contents,
  * Installation, Usage, License, Contributing, and Tests. This is the start of a chain of events build on promises, 
@@ -58,6 +64,7 @@ const init = () => {
                     builder.shape = answer.shape; // Store shape
                     builder.shapecolor = answer.shapecolor; // Store shape color
 
+                    createShape();
                 });
 
         })
@@ -70,11 +77,11 @@ const init = () => {
  */
 function createShape() {
 
-    let buildfilesrting = `<svg version=\"1.1\" width=\"300\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"150\" cy=\"100\" r=\"80\" fill=\"green\" /><text x=\"150\" y=\"125\" font-size=\"60\" text-anchor=\"middle\" fill=\"white\">SVG</text></svg>`
+    let buildfilesrting = shapes[builder.shape];
 
     fs.writeFile(builder.filename, buildfilesrting, (err) =>
-    err ? console.error(err) : console.log('Success!')
-);
+        err ? console.error(err) : console.log('Success!')
+    );
 
     return true;
 }
