@@ -56,7 +56,9 @@ It is recommended that you start with a directory structure that looks like the 
 ```
 
 > **Important**: Make sure that you remove `dist` from the `.gitignore` file so that Git will track this folder and include it when you push up to your application's repository.
-The application must include `Triangle`, `Circle`, and `Square` classes, as well as tests for each of these classes using Jest. While not a requirement, it is recommended that you place any common functionality and properties shared by the `Triangle`, `Circle`, and `Square` classes in a parent `Shape` class and use inheritance to reuse the code in the child classes.
+The application must include `Triangle`, `Circle`, and `Square` classes, as well as tests for each of these classes using Jest. 
+
+NOTE: While not a requirement, it is recommended that you place any common functionality and properties shared by the `Triangle`, `Circle`, and `Square` classes in a parent `Shape` class and use inheritance to reuse the code in the child classes.
 
 Each shape class should be tested for a `render()` method that returns a string for the corresponding SVG file with the given shape color.
 
