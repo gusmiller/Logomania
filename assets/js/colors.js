@@ -7,7 +7,7 @@
  */
 const chalk = require('chalk');
 
-const logosshape = ["circle", "square", "tiangle"]
+const logosshape = ["circle", "square", "triangle"]
 
 let selectedcolors = {
     text: "",
