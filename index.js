@@ -89,8 +89,8 @@ function createShape() {
     } else if (builder.shape === "triangle") {
         buildShape = new shapes.TriangleShape(builder.acronym, builder.textcolor, builder.shapecolor)        
         buildfilesrting += buildShape.triangle();
-        buildShape.yposition = 310;
-        buildShape.xposition = 245;
+        buildShape.yposition(310);
+        buildShape.xposition(245);
         buildfilesrting += buildShape.textnode();
     }
 
@@ -104,7 +104,7 @@ function createShape() {
 }
 
 /**
- * Entry point for the application. File will trigger this when it finishes
- * loading
+ * Entry point for the application. Loading process will trigger when it
+ * reaches this line.
  */
 init();
