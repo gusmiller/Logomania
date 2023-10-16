@@ -62,6 +62,7 @@ const shapequestions = [
         type: "input",
         name: "shapecolor",
         message: chalk.cyan("Please enter your shape color (use color name or hexadecimal representation)"),
+        default: "yellow",
         when(answer) {
             return answer.shape != null;
         },
