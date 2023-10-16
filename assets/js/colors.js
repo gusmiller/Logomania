@@ -20,6 +20,7 @@ const logoquestions = [
         type: "input",
         name: "acronym",
         message: chalk.green("Please enter a 3 letter acronym :"),
+        default: "GUS",
         validate: function (answer) {
 
             if (answer.length != 3) {
@@ -56,7 +57,7 @@ const shapequestions = [
         name: "shape",
         message: chalk.cyan("Please enter the shape of your logo (circle, square or tiangle)"),
         choices: logosshape,
-        default: "circle"
+        default: "triangle"
     },
     {
         type: "input",

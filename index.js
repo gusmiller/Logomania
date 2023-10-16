@@ -73,26 +73,28 @@ const init = () => {
  */
 function createShape() {
 
-    let buildfilesrting = "<svg version=\"1.1\" width=\"300\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">\n";
+    let buildShape = "";
+    let buildfilesrting = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n";
 
     if (builder.shape === "circle") {
-        const selectedshape = new shapes.CircleShape(builder.acronym, builder.textcolor, builder.shapecolor)
-        buildfilesrting += selectedshape.modeshape();
-        buildfilesrting += selectedshape.textnode();
+        buildShape = new shapes.CircleShape(builder.acronym, builder.textcolor, builder.shapecolor)
+        buildfilesrting += buildShape.circle();
+        buildfilesrting += buildShape.textnode();
 
     } else if (builder.shape === "square") {
-        const selectedshape = new shapes.SquareShape(builder.acronym, builder.shapecolor, builder.textcolor);
-        console.log(selectedshape);
+        buildShape = new shapes.SquareShape(builder.acronym, builder.textcolor, builder.shapecolor)
+        buildfilesrting += buildShape.square();
+        buildfilesrting += buildShape.textnode();
 
     } else if (builder.shape === "triangle") {
-        const selectedshape = new shapes.TriangleShape(builder.acronym, builder.shapecolor, builder.textcolor);
-        console.log(selectedshape);
-        selectedshape.yposition = 195;
-        selectedshape.xposition = 250;
+        buildShape = new shapes.TriangleShape(builder.acronym, builder.textcolor, builder.shapecolor)        
+        buildfilesrting += buildShape.triangle();
+        buildShape.yposition = 310;
+        buildShape.xposition = 245;
+        buildfilesrting += buildShape.textnode();
     }
 
     buildfilesrting += "</svg>";
-    console.log(buildfilesrting);
 
     fs.writeFile(builder.filename, buildfilesrting, (err) =>
         err ? console.error(err) : console.log('Success!')
