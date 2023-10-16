@@ -8,7 +8,7 @@
 
 // Include packages needed for this application
 const inquirer = require('inquirer');
-const shapes = require('./lib/shapes.js');
+const shapes = require('./lib/questions.js');
 
 // fs is a Node standard library package for reading and writing files
 const fs = require('fs');
