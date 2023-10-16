@@ -8,27 +8,25 @@ SO THAT I don't have to pay a graphic designer
 
 ## Acceptance Criteria
 
-```md
-    GIVEN a command-line application that accepts user input
+GIVEN a command-line application that accepts user input
 
-    WHEN I am prompted for text THEN I can enter up to three characters (done)
-    WHEN I am prompted for the text color THEN I can enter a color keyword (OR a hexadecimal number)
-    WHEN I am prompted for a shape THEN I am presented with a list of shapes to choose from: circle, triangle, and square (done)
-    WHEN I am prompted for the shape's color THEN I can enter a color keyword (OR a hexadecimal number)
+- WHEN I am prompted for text THEN I can enter up to three characters <span style="color:red;">(done)</span>
+- WHEN I am prompted for the text color THEN I can enter a color keyword (OR a hexadecimal number) <span style="color:red;">(done)</span>
+- WHEN I am prompted for a shape THEN I am presented with a list of shapes to choose from: circle, triangle, and square <span style="color:red;">(done)</span>
+- WHEN I am prompted for the shape's color THEN I can enter a color keyword (OR a hexadecimal number) <span style="color:red;">(done)</span>
+- WHEN I have entered input for all the prompts
+- THEN an SVG file is created named `logo.svg` AND the output text "Generated logo.svg" is printed in the command line <span style="color:red;">(done)</span>
+- WHEN I open the `logo.svg` file in a browser THEN I am shown a 300x200 pixel image that matches the criteria I entered <span style="color:red;">(done)</span>
 
-    WHEN I have entered input for all the prompts
-    THEN an SVG file is created named `logo.svg` 
-    AND the output text "Generated logo.svg" is printed in the command line
-
-    WHEN I open the `logo.svg` file in a browser
-    THEN I am shown a 300x200 pixel image that matches the criteria I entered
-```
+Additional Requirements
+- INCLUDE a Triangle, Circle, and Square **classes**
+- JEST - **unit tests** for each of these classes using Jest
 
 ## Mock-Up
 
 The following image shows a mock-up of the generated SVG given the following input entered by the user: `SVG` for the text, `white` for the text color, `circle` from the list of shapes, and `green` for the shape color. Note that this is just an image of the output SVG and not the SVG file itself:
 
-![Image showing a green circle with white text that reads "SVG.".](./Images/10-oop-homework-demo.png)
+![Image showing a green circle with white text that reads "SVG.".](../assets/images/10-oop-homework-demo.png)
 
 ## Additional Requirements
 
@@ -58,7 +56,9 @@ It is recommended that you start with a directory structure that looks like the 
 ```
 
 > **Important**: Make sure that you remove `dist` from the `.gitignore` file so that Git will track this folder and include it when you push up to your application's repository.
-The application must include `Triangle`, `Circle`, and `Square` classes, as well as tests for each of these classes using Jest. While not a requirement, it is recommended that you place any common functionality and properties shared by the `Triangle`, `Circle`, and `Square` classes in a parent `Shape` class and use inheritance to reuse the code in the child classes.
+The application must include `Triangle`, `Circle`, and `Square` classes, as well as tests for each of these classes using Jest. 
+
+NOTE: While not a requirement, it is recommended that you place any common functionality and properties shared by the `Triangle`, `Circle`, and `Square` classes in a parent `Shape` class and use inheritance to reuse the code in the child classes.
 
 Each shape class should be tested for a `render()` method that returns a string for the corresponding SVG file with the given shape color.
 

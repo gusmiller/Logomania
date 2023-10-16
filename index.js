@@ -8,6 +8,7 @@
 
 // Include packages needed for this application
 const inquirer = require('inquirer');
+const shapes = require('./lib/shapes.js');
 
 // fs is a Node standard library package for reading and writing files
 const fs = require('fs');
@@ -19,7 +20,8 @@ let builder = {
     textcolor: "",
     shape: "",
     shapecolor: "",
-    filename: "./examples/logo.svg"
+    filename: "./examples/logo.svg",
+    selectedshape: "",
 }
 
 /**
@@ -62,7 +64,7 @@ const init = () => {
                 });
 
         })
-        // .catch((e) => console.log(e.message));
+    // .catch((e) => console.log(e.message));
 };
 
 /**
@@ -71,13 +73,28 @@ const init = () => {
  */
 function createShape() {
 
-    let shapes = {
-        "circle": { code: `<svg version=\"1.1\" width=\"300\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"150\" cy=\"100\" r=\"80\" fill=\"${builder.shapecolor}\" /><text x=\"150\" y=\"125\" font-size=\"60\" text-anchor=\"middle\" fill=\"${builder.textcolor}\">${builder.acronym}</text></svg>` },
-        "square": { code: `<svg version=\"1.1\" width=\"300\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"10\" y=\"10\" width=\"510\" height=\"530\" stroke=\"${builder.shapecolor}\" fill=\"green\" stroke-width=\"2\"/><text x=\"150\" y=\"125\" font-size=\"60\" text-anchor=\"middle\" fill=\"${builder.textcolor}\">${builder.acronym}</text></svg>` },
-        "triangle": { code: `<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"svg-triangle\"><polygon x=\"10\" y=\"10\"  stroke=\"black\" stroke-width=\"2\" fill=\"${builder.shapecolor}\" points=\"250,60 100,400 400,400\"/><text x=\"250\" y=\"300\" font-size=\"60\" text-anchor=\"middle\" fill=\"${builder.textcolor}\">${builder.acronym}</text></svg>` }
+    let buildShape = "";
+    let buildfilesrting = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n";
+
+    if (builder.shape === "circle") {
+        buildShape = new shapes.CircleShape(builder.acronym, builder.textcolor, builder.shapecolor)
+        buildfilesrting += buildShape.circle();
+        buildfilesrting += buildShape.textnode();
+
+    } else if (builder.shape === "square") {
+        buildShape = new shapes.SquareShape(builder.acronym, builder.textcolor, builder.shapecolor)
+        buildfilesrting += buildShape.square();
+        buildfilesrting += buildShape.textnode();
+
+    } else if (builder.shape === "triangle") {
+        buildShape = new shapes.TriangleShape(builder.acronym, builder.textcolor, builder.shapecolor)        
+        buildfilesrting += buildShape.triangle();
+        buildShape.yposition(310);
+        buildShape.xposition(245);
+        buildfilesrting += buildShape.textnode();
     }
-    
-    let buildfilesrting = shapes[builder.shape].code;
+
+    buildfilesrting += "</svg>";
 
     fs.writeFile(builder.filename, buildfilesrting, (err) =>
         err ? console.error(err) : console.log('Success!')
@@ -87,7 +104,7 @@ function createShape() {
 }
 
 /**
- * Entry point for the application. File will trigger this when it finishes
- * loading
+ * Entry point for the application. Loading process will trigger when it
+ * reaches this line.
  */
 init();
