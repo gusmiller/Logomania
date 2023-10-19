@@ -8,7 +8,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "logotest": "node index.js"
+    "logotest": "node index.js",
+    "testscript": "jest"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,10 @@
   "homepage": "https://github.com/gusmiller/Logomania#readme",
   "dependencies": {
     "chalk": "^4.1.2",
-    "inquirer": "^8.2.4",
-    "email-validator": "^2.0.4"
+    "email-validator": "^2.0.4",
+    "inquirer": "^8.2.4"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }

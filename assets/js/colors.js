@@ -3,135 +3,14 @@
  * Copyright 2023 Gustavo Miller
  * Licensed under MIT
  * Assignment #10 - SVG Logo Generator
- * Date : 10/14/2023 7:28:21 AM
+ * Date : 10/18/2023 9:05:02 PM
  */
-const chalk = require('chalk');
-
-const logosshape = ["circle", "square", "triangle"]
-
-let selectedcolors = {
-    text: "",
-    shape: ""
-}
-
-// Logo questions - prompt user for the acronym and the color of the text
-const logoquestions = [
-    {
-        type: "input",
-        name: "acronym",
-        message: chalk.green("Please enter a 3 letter acronym :"),
-        default: "GUS",
-        validate: function (answer) {
-
-            if (answer.length != 3) {
-                return chalk.red("Acronum must be 3 characters! Please try again or press CTRL-C to exit CLI")
-            } else {
-                return true;
-            }
-
-        }
-    },
-    {
-        type: "input",
-        name: "colorname",
-        message: chalk.green("Please enter your text color (use color name or hexadecimal representation)"),
-        default: "red",
-        when(answer) {
-            return answer.acronym != null;
-        },
-        validate: (colorname) => {
-            if (validateHexColor(colorname) === true) {
-                selectedcolors.text = colorname
-                return true;
-            } else {
-                return chalk.red("The Hexadecimal entry is invalid! Please try again...")
-            }
-        },
-    }
-]
-
-// Shape questions - prompt user for the shape and color of the logo
-const shapequestions = [
-    {
-        type: "list",
-        name: "shape",
-        message: chalk.cyan("Please enter the shape of your logo (circle, square or tiangle)"),
-        choices: logosshape,
-        default: "triangle"
-    },
-    {
-        type: "input",
-        name: "shapecolor",
-        message: chalk.cyan("Please enter your shape color (use color name or hexadecimal representation)"),
-        default: "yellow",
-        when(answer) {
-            return answer.shape != null;
-        },
-        validate: (shapecolor) => {
-            if (validateHexColor(shapecolor) === true) {
-
-                if (shapecolor === selectedcolors.text) {
-                    return chalk.red("The Text and Shape cannot be the same color!")
-                }
-
-                selectedcolors.shape = shapecolor
-
-                return true;
-            } else {
-                return chalk.red("The Hexadecimal entry is invalid! Please try again...")
-            }
-        },
-    }
-]
-
-/**
- * This function takes a string parameter to validate whether it is a hexadecimal representation
- * of a color. Example based on https://www.geeksforgeeks.org/how-to-validate-hexadecimal-color-code-using-regular-expression/
- * @param {string} value 
- * @returns 
- */
-function validateHexColor(value) {
-
-    // Regular expression; two groups - [A-Fa-f0-9] any 6/3 letter from A-F upper/lower cases, any number from 0-9.
-    const validator = new RegExp(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/);
-
-    // Validate parameter is valid
-    if (value === null || !typeof value === "string") return false;
-
-    // Attempt to retrieve color from dictionary
-    let colorSelect = colorsdictionary[value];
-
-    if ((typeof colorSelect === 'undefined') || colorSelect === null) {
-
-        // Use the test method to validate string
-        if (validator.test(value) === true) {
-            return true;
-        } else {
-            return false;
-        }
-
-    } else {
-        return true;
-    }
-}
-
-/**
- * 
- * @param {string} color 
- */
-function confirmAnswerValidator(color) {
-    let colorselection = colorsdictionary[color];
-    if (colorselection === null) {
-
-    }
-}
 
 // There are millions of colors out there but I thought this would give a large range of common colors.
 // The colors will be validated against this array of objects.
 const colorsdictionary = {
     "black": { hexvalue: "#000000" },
     "silver": { hexvalue: "#c0c0c0" },
-    "gray": { hexvalue: "#808080" },
     "white": { hexvalue: "#ffffff" },
     "maroon": { hexvalue: "#800000" },
     "red": { hexvalue: "#ff0000" },
@@ -140,7 +19,6 @@ const colorsdictionary = {
     "green": { hexvalue: "#008000" },
     "lime": { hexvalue: "#00ff00" },
     "olive": { hexvalue: "#808000" },
-    "yellow": { hexvalue: "#ffff00" },
     "navy": { hexvalue: "#000080" },
     "blue": { hexvalue: "#0000ff" },
     "teal": { hexvalue: "#008080" },
@@ -154,7 +32,6 @@ const colorsdictionary = {
     "bisque": { hexvalue: "#ffe4c4" },
     "black": { hexvalue: "#000000" },
     "blanchedalmond": { hexvalue: "#ffebcd" },
-    "blue": { hexvalue: "#0000ff" },
     "blueviolet": { hexvalue: "#8a2be2" },
     "brown": { hexvalue: "#a52a2a" },
     "burlywood": { hexvalue: "#deb887" },
@@ -198,8 +75,6 @@ const colorsdictionary = {
     "ghostwhite": { hexvalue: "#f8f8ff" },
     "gold": { hexvalue: "#ffd700" },
     "goldenrod": { hexvalue: "#daa520" },
-    "gray": { hexvalue: "#808080" },
-    "green": { hexvalue: "#008000" },
     "greenyellow": { hexvalue: "#adff2f" },
     "grey": { hexvalue: "#808080" },
     "honeydew": { hexvalue: "#f0fff0" },
@@ -274,7 +149,6 @@ const colorsdictionary = {
     "seagreen": { hexvalue: "#2e8b57" },
     "seashell": { hexvalue: "#fff5ee" },
     "sienna": { hexvalue: "#a0522d" },
-    "silver": { hexvalue: "#c0c0c0" },
     "skyblue": { hexvalue: "#87ceeb" },
     "slateblue": { hexvalue: "#6a5acd" },
     "slategray": { hexvalue: "#708090" },
@@ -289,10 +163,9 @@ const colorsdictionary = {
     "turquoise": { hexvalue: "#40e0d0" },
     "violet": { hexvalue: "#ee82ee" },
     "wheat": { hexvalue: "#f5deb3" },
-    "white": { hexvalue: "#ffffff" },
     "whitesmoke": { hexvalue: "#f5f5f5" },
     "yellow": { hexvalue: "#ffff00" },
     "yellowgreen": { hexvalue: "#9acd32" }
 }
 
-module.exports = { logoquestions, shapequestions, colorsdictionary, selectedcolors, validateHexColor, confirmAnswerValidator }
+exports.colorsdictionary = colorsdictionary;

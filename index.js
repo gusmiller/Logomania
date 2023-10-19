@@ -13,7 +13,7 @@ const shapes = require('./lib/shapes.js');
 // fs is a Node standard library package for reading and writing files
 const fs = require('fs');
 
-const questions = require('./assets/js/colors.js');
+const questions = require('./assets/js/questions.js');
 
 let builder = {
     acronym: "",
