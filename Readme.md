@@ -16,6 +16,7 @@
 	<ol>
 		<li><a href="#Description">Generator Description</a></li>
 		<li><a href="#installation">Installation</a></li>
+		<li><a href="#jest">Unit Testing</a></li>
 		<li><a href="#license">License</a></li>
 		<li><a href="#usage">Application Usage</a></li>
 		<li><a href="#contactme">Questions? Contact Me!</a></li>
@@ -60,15 +61,43 @@ Please follow the instructions to install the Logomania CLI application
 	```
 3. Install Jest - Unit testing tool (Jest package is only for developing purposes)
 	```js
-	npm i --global jest
+	npm install --save-dev jest
 	```
 4. Run CLI application
 	```js
 	node index.js
 	```
+The package.json contains various metadata of the entire node application, it consists of key-value pairs in actual JSON format. This file is enough to describe the whole project. The most important nodes in this file are as follow: 
+
+- **Repository**: This consists of the repository on which the package is stored.
+- **Scripts**: We can define different scripts which could useful to run the package.
+- **Config**: It consists of some configurations about the package.
+- **Dependencies**: These are the set of dependencies that are necessary to use the package successfully.
+
+For more information about the package.json please visit [geekforgeeks](https://www.geeksforgeeks.org/what-is-package-json-in-node-js/) website.
 </div>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<div id="jest" style="margin-top: 20px;">
+
+## Jest Unit-Testing
+
+Jest is a framework for running "Unit Tests," a way for you to test the individual functions and components from your code to ensure future commits don't break something unexpected. 
+Testing is very important when working with a team of programmers (or even by yourself) ---any commits pushed to your source control should be automatically built and tested to make sure you don't accidentally break anything. Developing is time-expensive and we do not want to lose our code.
+
+Once you have installed the dependencies you can launch the test as follow:
+
+1. Run Jest on the console.
+	```js
+	npm run jest
+	```
+2. Run by calling script. This must be configured in the **package.json** file
+	```js
+	npm run testpackage
+	```
+NOTE: Before running the package make sure you have created your tests unit tests. Example: shapes.test.js this will test the shapes.js file, of course the file MUST contain the code require for testing.
+</div>
 
 <div id="license" style="margin-top: 25px;">
 
@@ -94,7 +123,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Application Usage
 
-Application usage entered automatically by Lorem Ipsum. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus natus iure dolorum aperiam itaque? Ipsam ad quidem quo neque aliquam natus blanditiis totam. Rerum accusantium fugit, alias numquam tenetur nemo necessitatibus laudantium officiis. Reprehenderit dolor labore iusto ut minus fugiat tempora, expedita corrupti. Ab tenetur similique ipsa dolore odio earum aliquam animi ducimus optio quibusdam ipsam eos ipsum perferendis, perspiciatis quasi temporibus. Aliquam perspiciatis dolorum est expedita quo possimus, quas temporibus pariatur mollitia debitis. Ducimus sapiente impedit culpa eos alias voluptas minima corporis veniam commodi perspiciatis. At quaerat quas porro veritatis sapiente nihil fugit cumque voluptatum voluptatem recusandae alias nulla iusto, quam exercitationem, ipsa corrupti possimus eligendi repellendus!
+The application is very simple to use. There are only 4 questions:
+
+<ol>
+<li>Please enter a 3 letter acronym (default value = GUS). It MUST be 3 characters!</li>
+<li>Please enter your text color (use color name or hexadecimal representation). This can be a named color or a Hex color code. </li>
+<li>Please enter the shape of your logo (circle, square or tiangle)</li>
+<li>Please enter your shape color (use color name or hexadecimal representation)</li>
+</ol>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
