@@ -1,6 +1,0 @@
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-<polygon x="10" y="10" stroke="black" stroke-width="2" fill="purple" points="250,60 100,400 400,400"/>
-
-<text x="245" y="310" font-size="60" text-anchor="middle" fill="yellow">GUS</text>
-
-</svg>
