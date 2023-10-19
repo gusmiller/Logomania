@@ -132,6 +132,10 @@ The application is very simple to use. There are only 4 questions:
 <li>Please enter your shape color (use color name or hexadecimal representation)</li>
 </ol>
 
+<div style="margin-top: 15px;">
+	<img src="./assets/images/Logomania.gif">
+</div>
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 </div>
